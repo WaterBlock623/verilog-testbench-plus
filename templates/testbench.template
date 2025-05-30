@@ -1,0 +1,39 @@
+//~ `New testbench
+`timescale  1ns / 1ps
+
+module tb_${MODULE_NAME};
+
+// ${MODULE_NAME} Parameters
+parameter PERIOD = 10;
+${PARAMETER_DECLARATION}
+
+// ${MODULE_NAME} Inputs
+${INPUT_DECLARATION}
+
+// ${MODULE_NAME} Outputs
+${OUTPUT_DECLARATION}
+
+// ${MODULE_NAME} Bidirs
+${INOUT_DECLARATION}
+
+initial
+begin
+    forever #(PERIOD/2)  clk=~clk;
+end
+
+initial
+begin
+    #(PERIOD*2) rst_n  =  1;
+end
+
+${MODULE_NAME} ${PARAMETER_DEFINITION} u_${MODULE_NAME} (
+${PORT_CONNECTION}
+);
+
+initial
+begin
+
+    $finish;
+end
+
+endmodule

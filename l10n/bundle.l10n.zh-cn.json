@@ -1,0 +1,13 @@
+{
+  "Instance": "例化",
+  "Testbench": "Testbench",
+  "No active editor": "没有活动的编辑器",
+  "Current file is not a Verilog file": "当前文件不是Verilog文件",
+  "Could not parse module information": "无法解析模块信息",
+  "{0} generated successfully": "{0}生成成功",
+  "{0} copied to clipboard": "{0}已复制到剪贴板",
+  "{0} appended to {1}": "{0}已追加到{1}",
+  "{0} written to {1}": "{0}已写入到{1}",
+  "Error writing to file: {0}": "写入文件时出错：{0}",
+  "Error generating {0}: {1}": "生成{0}时出错：{1}"
+}

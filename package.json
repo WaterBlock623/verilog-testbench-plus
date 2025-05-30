@@ -1,0 +1,251 @@
+{
+  "name": "verilog-testbench-plus",
+  "displayName": "Verilog Testbench Plus",
+  "description": "%description%",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "license": "MIT",
+  "keywords": ["verilog", "testbench", "instantiate"],
+  "icon": "images/icon.png",
+  "bugs": {
+    "url": "https://github.com/WaterBlock623/verilog-testbench-tofile/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WaterBlock623/verilog-testbench-tofile"
+  },
+  "main": "./out/extension.js",
+  "l10n": "./l10n",
+  "activationEvents": [
+    "onLanguage:verilog"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "verilog-testbench-plus.generateInstance",
+        "title": "%commands.generateInstance%"
+      },
+      {
+        "command": "verilog-testbench-plus.generateInstanceToClipboard",
+        "title": "%commands.generateInstanceToClipboard%"
+      },
+      {
+        "command": "verilog-testbench-plus.generateInstanceToFileOverwrite",
+        "title": "%commands.generateInstanceToFileOverwrite%"
+      },
+      {
+        "command": "verilog-testbench-plus.generateInstanceToFileAppend",
+        "title": "%commands.generateInstanceToFileAppend%"
+      },
+      {
+        "command": "verilog-testbench-plus.generateInstanceGeneral",
+        "title": "%commands.generateInstanceGeneral%"
+      },
+      {
+        "command": "verilog-testbench-plus.generateTestbench",
+        "title": "%commands.generateTestbench%"
+      },
+      {
+        "command": "verilog-testbench-plus.generateTestbenchToClipboard",
+        "title": "%commands.generateTestbenchToClipboard%"
+      },
+      {
+        "command": "verilog-testbench-plus.generateTestbenchToFileOverwrite",
+        "title": "%commands.generateTestbenchToFileOverwrite%"
+      },
+      {
+        "command": "verilog-testbench-plus.generateTestbenchToFileAppend",
+        "title": "%commands.generateTestbenchToFileAppend%"
+      },
+      {
+        "command": "verilog-testbench-plus.generateTestbenchGeneral",
+        "title": "%commands.generateTestbenchGeneral%"
+      },
+      {
+        "command": "verilog-testbench-plus.editTestbenchTemplate",
+        "title": "%commands.editTestbenchTemplate%"
+      },
+      {
+        "command": "verilog-testbench-plus.editInstanceTemplate",
+        "title": "%commands.editInstanceTemplate%"
+      }
+    ],
+    "submenus": [
+      {
+        "id": "verilog-testbench-plus.instance-submenu",
+        "label": "%submenu.generateInstance%"
+      },
+      {
+        "id": "verilog-testbench-plus.testbench-submenu",
+        "label": "%submenu.generateTestbench%"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "when": "resourceExtname == .v",
+          "submenu": "verilog-testbench-plus.instance-submenu",
+          "group": "verilog@1"
+        },
+        {
+          "when": "resourceExtname == .v",
+          "submenu": "verilog-testbench-plus.testbench-submenu",
+          "group": "verilog@2"
+        }
+      ],
+      "verilog-testbench-plus.instance-submenu": [
+        {
+          "command": "verilog-testbench-plus.generateInstanceGeneral",
+          "group": "1_general@1"
+        },
+        {
+          "command": "verilog-testbench-plus.generateInstance",
+          "group": "2_specific@1"
+        },
+        {
+          "command": "verilog-testbench-plus.generateInstanceToClipboard",
+          "group": "2_specific@2"
+        },
+        {
+          "command": "verilog-testbench-plus.generateInstanceToFileOverwrite",
+          "group": "2_specific@3"
+        },
+        {
+          "command": "verilog-testbench-plus.generateInstanceToFileAppend",
+          "group": "2_specific@4"
+        }
+      ],
+      "verilog-testbench-plus.testbench-submenu": [
+        {
+          "command": "verilog-testbench-plus.generateTestbenchGeneral",
+          "group": "1_general@1"
+        },
+        {
+          "command": "verilog-testbench-plus.generateTestbench",
+          "group": "2_specific@1"
+        },
+        {
+          "command": "verilog-testbench-plus.generateTestbenchToClipboard",
+          "group": "2_specific@2"
+        },
+        {
+          "command": "verilog-testbench-plus.generateTestbenchToFileOverwrite",
+          "group": "2_specific@3"
+        },
+        {
+          "command": "verilog-testbench-plus.generateTestbenchToFileAppend",
+          "group": "2_specific@4"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "verilog-testbench-plus.generateInstance",
+          "when": "resourceExtname == .v"
+        },
+        {
+          "command": "verilog-testbench-plus.generateInstanceToClipboard",
+          "when": "resourceExtname == .v"
+        },
+        {
+          "command": "verilog-testbench-plus.generateInstanceToFileOverwrite",
+          "when": "resourceExtname == .v"
+        },
+        {
+          "command": "verilog-testbench-plus.generateInstanceToFileAppend",
+          "when": "resourceExtname == .v"
+        },
+        {
+          "command": "verilog-testbench-plus.generateInstanceGeneral",
+          "when": "resourceExtname == .v"
+        },
+        {
+          "command": "verilog-testbench-plus.generateTestbench",
+          "when": "resourceExtname == .v"
+        },
+        {
+          "command": "verilog-testbench-plus.generateTestbenchToClipboard",
+          "when": "resourceExtname == .v"
+        },
+        {
+          "command": "verilog-testbench-plus.generateTestbenchToFileOverwrite",
+          "when": "resourceExtname == .v"
+        },
+        {
+          "command": "verilog-testbench-plus.generateTestbenchToFileAppend",
+          "when": "resourceExtname == .v"
+        },
+        {
+          "command": "verilog-testbench-plus.generateTestbenchGeneral",
+          "when": "resourceExtname == .v"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Verilog Testbench Plus",
+      "properties": {
+        "verilog-testbench-plus.instanceOutputMode": {
+          "type": "string",
+          "default": "newDocument",
+          "enum": [
+            "newDocument",
+            "clipboard",
+            "fileOverwrite",
+            "fileAppend"
+          ],
+          "enumDescriptions": [
+            "%configuration.instanceOutputMode.newDocument%",
+            "%configuration.instanceOutputMode.clipboard%",
+            "%configuration.instanceOutputMode.fileOverwrite%",
+            "%configuration.instanceOutputMode.fileAppend%"
+          ],
+          "description": "%configuration.instanceOutputMode.description%"
+        },
+        "verilog-testbench-plus.testbenchOutputMode": {
+          "type": "string",
+          "default": "newDocument",
+          "enum": [
+            "newDocument",
+            "clipboard",
+            "fileOverwrite",
+            "fileAppend"
+          ],
+          "enumDescriptions": [
+            "%configuration.testbenchOutputMode.newDocument%",
+            "%configuration.testbenchOutputMode.clipboard%",
+            "%configuration.testbenchOutputMode.fileOverwrite%",
+            "%configuration.testbenchOutputMode.fileAppend%"
+          ],
+          "description": "%configuration.testbenchOutputMode.description%"
+        },
+        "verilog-testbench-plus.instanceOutputPath": {
+          "type": "string",
+          "default": "./",
+          "description": "%configuration.instanceOutputPath.description%"
+        },
+        "verilog-testbench-plus.testbenchOutputPath": {
+          "type": "string",
+          "default": "./",
+          "description": "%configuration.testbenchOutputPath.description%"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.75.0",
+    "@types/node": "16.x",
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "@vscode/l10n": "^0.0.18"
+  }
+}
