@@ -2,6 +2,7 @@
   "name": "verilog-testbench-plus",
   "displayName": "Verilog Testbench Plus",
   "description": "%description%",
+  "publisher": "water-block",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.75.0"
