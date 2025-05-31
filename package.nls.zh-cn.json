@@ -24,6 +24,8 @@
   "configuration.testbenchOutputMode.fileAppend": "写入文件(存在则追加)",
   "configuration.instanceOutputPath.description": "例化文件的输出路径(相对于源文件)",
   "configuration.testbenchOutputPath.description": "Testbench文件的输出路径(相对于源文件)",
+  "configuration.instanceOutputFileName.description": "例化输出文件名(使用${baseName}替换实际文件名)",
+  "configuration.testbenchOutputFileName.description": "Testbench输出文件名(使用${baseName}替换实际文件名)",
   "submenu.generateInstance": "生成例化",
   "submenu.generateTestbench": "生成Testbench"
 }

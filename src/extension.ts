@@ -25,37 +25,37 @@ export function activate(context: vscode.ExtensionContext) {
     // 注册生成实例化命令
     // Register generate instance commands
     let instanceCmd = vscode.commands.registerCommand('verilog-testbench-plus.generateInstance', () => {
-        generateCode(context, 'instance.template', l10n.t('Instance'), OutputMode.NewDocument);
+        generateCode(context, 'instance.template', 'Instance', OutputMode.NewDocument);
     });
 
     let instanceClipboardCmd = vscode.commands.registerCommand('verilog-testbench-plus.generateInstanceToClipboard', () => {
-        generateCode(context, 'instance.template', l10n.t('Instance'), OutputMode.Clipboard);
+        generateCode(context, 'instance.template', 'Instance', OutputMode.Clipboard);
     });
 
     let instanceFileOverwriteCmd = vscode.commands.registerCommand('verilog-testbench-plus.generateInstanceToFileOverwrite', () => {
-        generateCode(context, 'instance.template', l10n.t('Instance'), OutputMode.FileOverwrite);
+        generateCode(context, 'instance.template', 'Instance', OutputMode.FileOverwrite);
     });
 
     let instanceFileAppendCmd = vscode.commands.registerCommand('verilog-testbench-plus.generateInstanceToFileAppend', () => {
-        generateCode(context, 'instance.template', l10n.t('Instance'), OutputMode.FileAppend);
+        generateCode(context, 'instance.template', 'Instance', OutputMode.FileAppend);
     });
 
     // 注册生成测试文件命令
     // Register generate testbench commands
     let testbenchCmd = vscode.commands.registerCommand('verilog-testbench-plus.generateTestbench', () => {
-        generateCode(context, 'testbench.template', l10n.t('Testbench'), OutputMode.NewDocument);
+        generateCode(context, 'testbench.template', 'Testbench', OutputMode.NewDocument);
     });
 
     let testbenchClipboardCmd = vscode.commands.registerCommand('verilog-testbench-plus.generateTestbenchToClipboard', () => {
-        generateCode(context, 'testbench.template', l10n.t('Testbench'), OutputMode.Clipboard);
+        generateCode(context, 'testbench.template', 'Testbench', OutputMode.Clipboard);
     });
 
     let testbenchFileOverwriteCmd = vscode.commands.registerCommand('verilog-testbench-plus.generateTestbenchToFileOverwrite', () => {
-        generateCode(context, 'testbench.template', l10n.t('Testbench'), OutputMode.FileOverwrite);
+        generateCode(context, 'testbench.template', 'Testbench', OutputMode.FileOverwrite);
     });
 
     let testbenchFileAppendCmd = vscode.commands.registerCommand('verilog-testbench-plus.generateTestbenchToFileAppend', () => {
-        generateCode(context, 'testbench.template', l10n.t('Testbench'), OutputMode.FileAppend);
+        generateCode(context, 'testbench.template', 'Testbench', OutputMode.FileAppend);
     });
 
     // 注册通用命令（根据设置选择输出模式）
@@ -63,13 +63,13 @@ export function activate(context: vscode.ExtensionContext) {
     let instanceGeneralCmd = vscode.commands.registerCommand('verilog-testbench-plus.generateInstanceGeneral', () => {
         const config = vscode.workspace.getConfiguration('verilog-testbench-plus');
         const mode = config.get<string>('instanceOutputMode', OutputMode.NewDocument) as OutputMode;
-        generateCode(context, 'instance.template', l10n.t('Instance'), mode);
+        generateCode(context, 'instance.template', 'Instance', mode);
     });
 
     let testbenchGeneralCmd = vscode.commands.registerCommand('verilog-testbench-plus.generateTestbenchGeneral', () => {
         const config = vscode.workspace.getConfiguration('verilog-testbench-plus');
         const mode = config.get<string>('testbenchOutputMode', OutputMode.NewDocument) as OutputMode;
-        generateCode(context, 'testbench.template', l10n.t('Testbench'), mode);
+        generateCode(context, 'testbench.template', 'Testbench', mode);
     });
 
     // 编辑模板文件
@@ -167,12 +167,12 @@ async function generateCode(context: vscode.ExtensionContext, templateFile: stri
         switch (outputMode) {
             case OutputMode.NewDocument:
                 await outputToNewDocument(output);
-                vscode.window.showInformationMessage(l10n.t('{0} generated successfully', type));
+                vscode.window.showInformationMessage(l10n.t('{0} generated successfully', l10n.t(type)));
                 break;
 
             case OutputMode.Clipboard:
                 await outputToClipboard(output);
-                vscode.window.showInformationMessage(l10n.t('{0} copied to clipboard', type));
+                vscode.window.showInformationMessage(l10n.t('{0} copied to clipboard', l10n.t(type)));
                 break;
 
             case OutputMode.FileOverwrite:
@@ -184,7 +184,9 @@ async function generateCode(context: vscode.ExtensionContext, templateFile: stri
                 break;
         }
     } catch (error) {
-        vscode.window.showErrorMessage(l10n.t('Error generating {0}: {1}', type, <string>error));
+        const errMsg = error instanceof Error ? error.message : String(error);
+        vscode.window.showErrorMessage(l10n.t('Error generating {0}: {1}', l10n.t(type), errMsg));
+        console.error(error);
     }
 }
 
@@ -220,7 +222,7 @@ async function outputToClipboard(content: string) {
  */
 async function outputToFile(content: string, sourceFile: string, type: string, append: boolean) {
     const config = vscode.workspace.getConfiguration('verilog-testbench-plus');
-    const outputPath = type === l10n.t('Instance')
+    const outputPath = type === 'Instance'
         ? config.get<string>('instanceOutputPath', './')
         : config.get<string>('testbenchOutputPath', './');
 
@@ -231,7 +233,12 @@ async function outputToFile(content: string, sourceFile: string, type: string, a
 
     // 生成输出文件名
     // Generate output file name
-    const outputFileName = `tb_${baseName}.v`;
+    // const outputFileName = `tb_${baseName}.v`;
+    const outputFileNameConfig = type === 'Instance'
+        ? config.get<string>('instanceOutputFileName', '${baseName}_inst.v')
+        : config.get<string>('testbenchOutputFileName', 'tb_${baseName}.v');
+    const pattern = new RegExp('\\$\\{baseName\\}', 'g')
+    const outputFileName = outputFileNameConfig.replace(pattern, baseName);
 
     // 解析输出路径（相对于源文件目录）
     // Resolve output path (relative to source file directory)
@@ -253,12 +260,12 @@ async function outputToFile(content: string, sourceFile: string, type: string, a
             // Append mode
             const existingContent = fs.readFileSync(outputFilePath, 'utf8');
             fs.writeFileSync(outputFilePath, existingContent + '\n\n' + content, 'utf8');
-            vscode.window.showInformationMessage(l10n.t('{0} appended to {1}', type, outputFileName));
+            vscode.window.showInformationMessage(l10n.t('{0} appended to {1}', l10n.t(type), outputFileName));
         } else {
             // 覆盖模式
             // Overwrite mode
             fs.writeFileSync(outputFilePath, content, 'utf8');
-            vscode.window.showInformationMessage(l10n.t('{0} written to {1}', type, outputFileName));
+            vscode.window.showInformationMessage(l10n.t('{0} written to {1}', l10n.t(type), outputFileName));
         }
 
         // 打开生成的文件
@@ -266,7 +273,9 @@ async function outputToFile(content: string, sourceFile: string, type: string, a
         const doc = await vscode.workspace.openTextDocument(outputFilePath);
         await vscode.window.showTextDocument(doc);
     } catch (error) {
-        vscode.window.showErrorMessage(l10n.t('Error writing to file: {0}', <string>error));
+        const errMsg = error instanceof Error ? error.message : String(error);
+        vscode.window.showErrorMessage(l10n.t('Error writing to file: {0}', errMsg));
+        console.error(error);
     }
 }
 
@@ -434,11 +443,11 @@ function extractPorts(content: string, portType: string): Array<{ name: string, 
     // Match format: input [wire|reg] [signed] [range] port_list
     const pattern = new RegExp(
         `\\b${portType}` +
-        `(\\s+(wire|reg)\\s*)*` +
-        `(\\s*signed\\s*)*` +
-        `(\\s*\\[.*?:.*?\\]\\s*)*` +
+        `(\\s+(wire|reg)\\s*)?` +
+        `(\\s*signed\\s*)?` +
+        `(\\s*\\[[^\\]]*\\]\\s*)?` +
         `([\\s\\S]*?)` +
-        `(?=\\binput\\b|\\boutput\\b|\\binout\\b|;|\\))`,
+        `(?=\\b(input|output|inout|endmodule)\\b|;|\\))`,
         'gm'
     );
 
@@ -528,7 +537,7 @@ function generateParameterDeclaration(params: Array<{ name: string, value: strin
     const maxValueLen = Math.max(...params.map(p => p.value.length));
 
     return params.map(p =>
-        `parameter ${p.name.padEnd(maxNameLen + 1)} = ${p.value.padEnd(maxValueLen)};`
+        `parameter ${p.name.padEnd(maxNameLen)} = ${p.value.padEnd(maxValueLen)};`
     ).join('\n');
 }
 
@@ -543,10 +552,10 @@ function generateParameterDefinition(params: Array<{ name: string, value: string
 
     // 计算最大长度用于对齐
     // Calculate maximum length for alignment
-    const maxLen = Math.max(...params.map(p => p.name.length), 24);
+    const maxLen = Math.max(...params.map(p => p.name.length));
 
     const lines = params.map(p =>
-        `    .${p.name.padEnd(maxLen)}( ${p.name.padEnd(maxLen + 2)} )`
+        `    .${p.name.padEnd(maxLen)}(${p.name.padEnd(maxLen)})`
     );
 
     return '#(\n' + lines.join(',\n') + '\n)';
@@ -559,20 +568,45 @@ function generateParameterDefinition(params: Array<{ name: string, value: string
  * @param portType - 端口类型（reg/wire）/ Port type (reg/wire)
  * @returns 端口声明字符串 / Port declaration string
  */
-function generatePortDeclaration(ports: Array<{ name: string, range: string }>, portType: string): string {
+function generatePortDeclaration(
+    ports: Array<{ name: string, range: string }>,
+    portType: string
+): string {
     if (ports.length === 0) return '';
 
-    return ports.map(p => {
-        const rangeStr = p.range ? p.range + ' ' : '';
-        let initValue = '';
+    // 计算最大长度用于对齐
+    // Calculate maximum length for alignment
+    const maxNameLength = Math.max(...ports.map(p => p.name.length));
+    const maxRangeLength = Math.max(
+        ...ports.map(p => p.range ? p.range.length : 0),
+        0 // 最小宽度 Minimum length
+    );
 
-        // 为reg类型端口添加初始值
-        // Add initial value for reg type ports
+    // 生成对齐的端口声明
+    // Generate aligned port declarations
+    return ports.map(p => {
+        // 处理位宽范围
+        const rangeStr = portType === 'reg'
+            ? (p.range
+                ? `${p.range}`.padEnd(maxRangeLength + 1)
+                : ''.padEnd(maxRangeLength + 1))
+            : (''.padEnd(maxRangeLength));
+
+        // 处理初始值
+        // Handle initValue
+        let initValue = '';
         if (portType === 'reg') {
             initValue = ' = 0';
         }
 
-        return `${portType.padEnd(4)}  ${rangeStr}${p.name}${initValue};`;
+        // 创建对齐的声明行
+        // Create aligned declaration lines
+        return [
+            portType.padEnd(5),           // 类型 Type
+            rangeStr,                     // 位宽 Width
+            p.name.padEnd(maxNameLength), // 端口名 Name
+            initValue + ';',              // 初始值 InitValue
+        ].join('');
     }).join('\n');
 }
 
@@ -593,7 +627,7 @@ function generatePortConnection(info: ModuleInfo): string {
 
     // 计算最大名称长度，用于对齐
     // Calculate maximum name length for alignment
-    const maxNameLen = Math.max(...allPorts.map(p => p.name.length), 24);
+    const maxNameLen = Math.max(...allPorts.map(p => p.name.length));
 
     const groups: string[][] = [];
 
@@ -601,19 +635,19 @@ function generatePortConnection(info: ModuleInfo): string {
     // Group by type: inputs, outputs, inouts
     if (info.inputs.length > 0) {
         groups.push(info.inputs.map(p =>
-            `    .${p.name.padEnd(maxNameLen)}( ${p.name.padEnd(maxNameLen + 2)} )`
+            `    .${p.name.padEnd(maxNameLen)}(${p.name.padEnd(maxNameLen)})`
         ));
     }
 
     if (info.outputs.length > 0) {
         groups.push(info.outputs.map(p =>
-            `    .${p.name.padEnd(maxNameLen)}( ${p.name.padEnd(maxNameLen + 2)} )`
+            `    .${p.name.padEnd(maxNameLen)}(${p.name.padEnd(maxNameLen)})`
         ));
     }
 
     if (info.inouts.length > 0) {
         groups.push(info.inouts.map(p =>
-            `    .${p.name.padEnd(maxNameLen)}( ${p.name.padEnd(maxNameLen + 2)} )`
+            `    .${p.name.padEnd(maxNameLen)}(${p.name.padEnd(maxNameLen)})`
         ));
     }
 

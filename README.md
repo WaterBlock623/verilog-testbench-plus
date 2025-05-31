@@ -16,30 +16,30 @@ This extension was developed with reference to:
     * Append to existing file
 * Customizable configurations
     * Custom generation templates
-    * Set default output path
+    * Custom output path
+    * Custom output file name
     * Configure default behavior for output
 
-![](./images/image.png)
-![](./images/image-1.png)
+![](./images/example.png)
 
 ## Usage
 * Right-click in the editor
 
-![](./images/image-5.png)
+![](./images/right_click_en.png)
 
 * Command Palette (Ctrl + Shift + P)
 
-![](./images/image-10.png)
+![](./images/command_palette_en.png)
 
 ## Extension Settings
 
 * Settings
 
-![](./images/image-6.png)
+![](./images/settings_en.png)
 
 * Custom template file (Ctrl + Shift + P)
 
-![](./images/image-9.png)
+![](./images/command_palette_template_en.png)
 
 * Default configurations
 
@@ -109,9 +109,15 @@ endmodule
 
 ## Version History
 
+### 0.0.2
+
+* Fixed bugs
+* Added the function of customizing the output file name
+* Adjusted the alignment format
+
 ### 0.0.1
 
-Initial release
+* Initial release
 
 ## Repository
 
@@ -140,30 +146,30 @@ Initial release
 * 自定义配置
 
     * 自定义生成模板
-    * 设置默认输出路径
+    * 自定义输出路径
+    * 自定义输出文件名
     * 设置输出的默认行为
 
-![](./images/image.png)
-![](./images/image-1.png)
+![](./images/example.png)
 
 ## 使用方式
 * 编辑器内右键
 
-![](./images/image-2.png)
+![](./images/right_click_zh_cn.png)
 
 * 命令面板(Ctrl + Shift + P)
 
-![](./images/image-3.png)
+![](./images/command_palette_zh_cn.png)
 
 ## 扩展设置
 
 * 设置
 
-![](./images/image-7.png)
+![](./images/settings_zh_cn.png)
 
 * 自定义模板文件(Ctrl + Shift + P)
 
-![](./images/image-8.png)
+![](./images/command_palette_template_zh_cn.png)
 
 * 默认配置
 
@@ -232,6 +238,12 @@ endmodule
 ```
 
 ## 版本说明
+
+### 0.0.2
+
+* 修复bug
+* 新增自定义输出文件名的功能
+* 调整了对齐格式
 
 ### 0.0.1
 

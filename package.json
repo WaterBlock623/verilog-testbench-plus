@@ -236,6 +236,16 @@
           "type": "string",
           "default": "./",
           "description": "%configuration.testbenchOutputPath.description%"
+        },
+        "verilog-testbench-plus.instanceOutputFileName": {
+          "type": "string",
+          "default": "${baseName}_inst.v",
+          "description": "%configuration.instanceOutputFileName.description%"
+        },
+        "verilog-testbench-plus.testbenchOutputFileName": {
+          "type": "string",
+          "default": "tb_${baseName}.v",
+          "description": "%configuration.testbenchOutputFileName.description%"
         }
       }
     }
