@@ -296,7 +296,7 @@
     ]
   },
   "scripts": {
-    "vscode:prepublish": "npm run compile",
+    "vscode:prepublish": "npm run clean && npm run compile",
     "clean": "rimraf out",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
