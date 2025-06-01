@@ -210,75 +210,90 @@
         }
       ]
     },
-    "configuration": {
-      "title": "Verilog Testbench Plus",
-      "properties": {
-        "verilog-testbench-plus.instanceOutputMode": {
-          "type": "string",
-          "default": "newDocument",
-          "enum": [
-            "newDocument",
-            "clipboard",
-            "fileOverwrite",
-            "fileAppend"
-          ],
-          "enumDescriptions": [
-            "%configuration.instanceOutputMode.newDocument%",
-            "%configuration.instanceOutputMode.clipboard%",
-            "%configuration.instanceOutputMode.fileOverwrite%",
-            "%configuration.instanceOutputMode.fileAppend%"
-          ],
-          "description": "%configuration.instanceOutputMode.description%"
-        },
-        "verilog-testbench-plus.testbenchOutputMode": {
-          "type": "string",
-          "default": "newDocument",
-          "enum": [
-            "newDocument",
-            "clipboard",
-            "fileOverwrite",
-            "fileAppend"
-          ],
-          "enumDescriptions": [
-            "%configuration.testbenchOutputMode.newDocument%",
-            "%configuration.testbenchOutputMode.clipboard%",
-            "%configuration.testbenchOutputMode.fileOverwrite%",
-            "%configuration.testbenchOutputMode.fileAppend%"
-          ],
-          "description": "%configuration.testbenchOutputMode.description%"
-        },
-        "verilog-testbench-plus.instanceOutputPath": {
-          "type": "string",
-          "default": "./",
-          "description": "%configuration.instanceOutputPath.description%"
-        },
-        "verilog-testbench-plus.testbenchOutputPath": {
-          "type": "string",
-          "default": "./",
-          "description": "%configuration.testbenchOutputPath.description%"
-        },
-        "verilog-testbench-plus.instanceOutputFileName": {
-          "type": "string",
-          "default": "${baseName}_inst.v",
-          "description": "%configuration.instanceOutputFileName.description%"
-        },
-        "verilog-testbench-plus.testbenchOutputFileName": {
-          "type": "string",
-          "default": "tb_${baseName}.v",
-          "description": "%configuration.testbenchOutputFileName.description%"
-        },
-        "verilog-testbench-plus.selectedInstanceTemplate": {
-          "type": "string",
-          "default": null,
-          "description": "%configuration.selectedInstanceTemplate.description%"
-        },
-        "verilog-testbench-plus.selectedTestbenchTemplate": {
-          "type": "string",
-          "default": null,
-          "description": "%configuration.selectedTestbenchTemplate.description%"
+    "configuration": [
+      {
+        "title": "Instance",
+        "properties": {
+          "verilog-testbench-plus.instanceOutputMode": {
+            "type": "string",
+            "order": 0,
+            "default": "newDocument",
+            "enum": [
+              "newDocument",
+              "clipboard",
+              "fileOverwrite",
+              "fileAppend"
+            ],
+            "enumDescriptions": [
+              "%configuration.instanceOutputMode.newDocument%",
+              "%configuration.instanceOutputMode.clipboard%",
+              "%configuration.instanceOutputMode.fileOverwrite%",
+              "%configuration.instanceOutputMode.fileAppend%"
+            ],
+            "description": "%configuration.instanceOutputMode.description%"
+          },
+          "verilog-testbench-plus.instanceOutputPath": {
+            "type": "string",
+            "order": 1,
+            "default": "./",
+            "description": "%configuration.instanceOutputPath.description%"
+          },
+          "verilog-testbench-plus.instanceOutputFileName": {
+            "type": "string",
+            "order": 2,
+            "default": "${baseName}_inst.v",
+            "description": "%configuration.instanceOutputFileName.description%"
+          },
+          "verilog-testbench-plus.selectedInstanceTemplate": {
+            "type": "string",
+            "order": 3,
+            "default": null,
+            "description": "%configuration.selectedInstanceTemplate.description%"
+          }
+        }
+      },
+      {
+        "title": "Testbench",
+        "properties": {
+          "verilog-testbench-plus.testbenchOutputMode": {
+            "type": "string",
+            "order": 0,
+            "default": "newDocument",
+            "enum": [
+              "newDocument",
+              "clipboard",
+              "fileOverwrite",
+              "fileAppend"
+            ],
+            "enumDescriptions": [
+              "%configuration.testbenchOutputMode.newDocument%",
+              "%configuration.testbenchOutputMode.clipboard%",
+              "%configuration.testbenchOutputMode.fileOverwrite%",
+              "%configuration.testbenchOutputMode.fileAppend%"
+            ],
+            "description": "%configuration.testbenchOutputMode.description%"
+          },
+          "verilog-testbench-plus.testbenchOutputPath": {
+            "type": "string",
+            "order": 1,
+            "default": "./",
+            "description": "%configuration.testbenchOutputPath.description%"
+          },
+          "verilog-testbench-plus.testbenchOutputFileName": {
+            "type": "string",
+            "order": 2,
+            "default": "tb_${baseName}.v",
+            "description": "%configuration.testbenchOutputFileName.description%"
+          },
+          "verilog-testbench-plus.selectedTestbenchTemplate": {
+            "type": "string",
+            "order": 3,
+            "default": null,
+            "description": "%configuration.selectedTestbenchTemplate.description%"
+          }
         }
       }
-    }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
