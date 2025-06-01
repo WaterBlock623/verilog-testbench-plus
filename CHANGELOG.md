@@ -7,6 +7,9 @@ All notable changes to the "verilog-testbench-tofile" extension will be document
 
 ### English
 
+## [0.1.1] - 2025-06-2
+- Remove unnecessary files
+
 ## [0.1.0] - 2025-06-2
 - Add template operations (add, edit, delete, select)
 
@@ -22,6 +25,9 @@ All notable changes to the "verilog-testbench-tofile" extension will be document
 <br>
 
 ### 中文
+
+## [0.1.1] - 2025-06-2
+- 移除多余文件
 
 ## [0.1.0] - 2025-06-2
 - 新增模板操作(添加,编辑,删除,应用)

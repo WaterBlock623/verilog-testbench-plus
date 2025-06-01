@@ -117,6 +117,10 @@ endmodule
 
 ## Version History
 
+### 0.1.1
+
+- Remove unnecessary files
+
 ### 0.1.0
 
 - Add template operations (add, edit, delete, select)
@@ -255,6 +259,10 @@ endmodule
 ```
 
 ## 版本说明
+
+### 0.1.1
+
+- 移除多余文件
 
 ### 0.1.0
 
