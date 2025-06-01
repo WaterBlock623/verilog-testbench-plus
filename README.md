@@ -1,49 +1,57 @@
 # Verilog Testbench Plus README
 
-### 中文版在后面
+- [English](#english)
+- [中文](#中文)
 
-This extension was developed with reference to:  
+<br>
+
+### English
+
+This extension was developed with reference to:
 [Verilog_Testbench](https://marketplace.visualstudio.com/items?itemName=Truecrab.verilog-testbench-instance)
 
 ## Features
 
-* Automatically generates Testbench
-* Automatically generates module instantiation
-* Multiple output options
-    * Create new document  
-    * Copy to clipboard  
-    * Overwrite existing file  
-    * Append to existing file
-* Customizable configurations
-    * Custom generation templates
-    * Custom output path
-    * Custom output file name
-    * Configure default behavior for output
+- Automatically generates Testbench
+- Automatically generates module instantiation
+- Multiple output options
+    - Create new document  
+    - Copy to clipboard  
+    - Overwrite existing file  
+    - Append to existing file
+- Customizable configurations
+    - Custom generation templates
+    - Custom output path
+    - Custom output file name
+    - Configure default behavior for output
 
 ![](./images/example.png)
 
 ## Usage
-* Right-click in the editor
+- Right-click in the editor
 
 ![](./images/right_click_en.png)
 
-* Command Palette (Ctrl + Shift + P)
+- Command Palette (Ctrl + Shift + P)
 
 ![](./images/command_palette_en.png)
 
 ## Extension Settings
 
-* Settings
+- Settings
 
 ![](./images/settings_en.png)
 
-* Custom template file (Ctrl + Shift + P)
+- Custom template file
+    - 1.Open Command Palette (Ctrl + Shift + P)
+    - 2.Create Template
+    - 3.Select emplate
 
 ![](./images/command_palette_template_en.png)
 
-* Default configurations
+- Default configurations
 
-* Instantiation Template:
+- Instantiation Template:
 
 ```
 // ${MODULE_NAME} Parameters
@@ -63,7 +71,7 @@ ${PORT_CONNECTION}
 );
 ```
 
-* Testbench Template:
+- Testbench Template:
 
 ```
 //~ `New testbench
@@ -109,71 +117,80 @@ endmodule
 
 ## Version History
 
+### 0.1.0
+
+- Add template operations (add, edit, delete, select)
+
 ### 0.0.2
 
-* Fixed bugs
-* Added the function of customizing the output file name
-* Adjusted the alignment format
+- Fix bugs
+- Add the function of customizing the output file name
+- Adjust the alignment format
 
 ### 0.0.1
 
-* Initial release
+- Initial release
 
 ## Repository
 
-* [https://github.com/WaterBlock623/verilog-testbench-plus](https://github.com/WaterBlock623/verilog-testbench-plus)
+- [https://github.com/WaterBlock623/verilog-testbench-plus](https://github.com/WaterBlock623/verilog-testbench-plus)
 
 ### **Enjoy!**
 
-# Verilog Testbench Plus README
+<br>
 
-本扩展编写时参考：
+### 中文
+
+本扩展编写时参考:
 [Verilog_Testbench](https://marketplace.visualstudio.com/items?itemName=Truecrab.verilog-testbench-instance)
 
 ## 功能
 
-* 自动生成Testbench
+- 自动生成Testbench
 
-* 自动生成模块例化
+- 自动生成模块例化
 
-* 多种输出选项
+- 多种输出选项
 
-    * 创建新文档  
-    * 复制到剪贴板  
-    * 覆盖现有文件  
-    * 追加到现有文件
+    - 创建新文档  
+    - 复制到剪贴板  
+    - 覆盖现有文件  
+    - 追加到现有文件
 
-* 自定义配置
+- 自定义配置
 
-    * 自定义生成模板
-    * 自定义输出路径
-    * 自定义输出文件名
-    * 设置输出的默认行为
+    - 自定义生成模板
+    - 自定义输出路径
+    - 自定义输出文件名
+    - 设置输出的默认行为
 
 ![](./images/example.png)
 
 ## 使用方式
-* 编辑器内右键
+- 编辑器内右键
 
 ![](./images/right_click_zh_cn.png)
 
-* 命令面板(Ctrl + Shift + P)
+- 命令面板(Ctrl + Shift + P)
 
 ![](./images/command_palette_zh_cn.png)
 
 ## 扩展设置
 
-* 设置
+- 设置
 
 ![](./images/settings_zh_cn.png)
 
-* 自定义模板文件(Ctrl + Shift + P)
+- 自定义模板文件
+    - 1.打开命令面板(Ctrl + Shift + P)
+    - 2.创建模板
+    - 3.应用模板
 
 ![](./images/command_palette_template_zh_cn.png)
 
-* 默认配置
+- 默认配置
 
-* 例化
+- 例化
 
 ```
 // ${MODULE_NAME} Parameters
@@ -193,7 +210,7 @@ ${PORT_CONNECTION}
 );
 ```
 
-* Testbench
+- Testbench
 
 ```
 //~ `New testbench
@@ -239,18 +256,22 @@ endmodule
 
 ## 版本说明
 
+### 0.1.0
+
+- 新增模板操作(添加,编辑,删除,应用)
+
 ### 0.0.2
 
-* 修复bug
-* 新增自定义输出文件名的功能
-* 调整了对齐格式
+- 修复bug
+- 新增自定义输出文件名的功能
+- 调整对齐格式
 
 ### 0.0.1
 
-* 首次发布
+- 首次发布
 
 ## 存储库
 
-* [https://github.com/WaterBlock623/verilog-testbench-plus](https://github.com/WaterBlock623/verilog-testbench-plus)
+- [https://github.com/WaterBlock623/verilog-testbench-plus](https://github.com/WaterBlock623/verilog-testbench-plus)
 
 ### **Enjoy!**
