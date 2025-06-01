@@ -18,11 +18,11 @@
   ],
   "icon": "images/icon.png",
   "bugs": {
-    "url": "https://github.com/WaterBlock623/verilog-testbench-tofile/issues"
+    "url": "https://github.com/WaterBlock623/verilog-testbench-plus/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/WaterBlock623/verilog-testbench-tofile"
+    "url": "https://github.com/WaterBlock623/verilog-testbench-plus"
   },
   "main": "./out/extension.js",
   "l10n": "./l10n",

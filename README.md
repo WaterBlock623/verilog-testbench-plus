@@ -121,7 +121,7 @@ endmodule
 
 ## Repository
 
-* [https://github.com/WaterBlock623/verilog-testbench-tofile](https://github.com/WaterBlock623/verilog-testbench-tofile)
+* [https://github.com/WaterBlock623/verilog-testbench-plus](https://github.com/WaterBlock623/verilog-testbench-plus)
 
 ### **Enjoy!**
 
@@ -251,6 +251,6 @@ endmodule
 
 ## 存储库
 
-* [https://github.com/WaterBlock623/verilog-testbench-tofile](https://github.com/WaterBlock623/verilog-testbench-tofile)
+* [https://github.com/WaterBlock623/verilog-testbench-plus](https://github.com/WaterBlock623/verilog-testbench-plus)
 
 ### **Enjoy!**
