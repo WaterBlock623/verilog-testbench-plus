@@ -3,7 +3,7 @@
   "displayName": "Verilog Testbench Plus",
   "description": "%description%",
   "publisher": "water-block",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "engines": {
     "vscode": "^1.75.0"
   },
@@ -297,6 +297,7 @@
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
+    "clean": "rimraf out",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile && npm run lint",
@@ -315,6 +316,7 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
-    "@vscode/l10n": "^0.0.18"
+    "@vscode/l10n": "^0.0.18",
+    "rimraf": "^6.0.1"
   }
 }
