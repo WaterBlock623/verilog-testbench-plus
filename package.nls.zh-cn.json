@@ -28,8 +28,8 @@
   "configuration.testbenchOutputPath.description": "Testbench文件的输出路径(相对于源文件)",
   "configuration.instanceOutputFileName.description": "例化输出文件名(使用${baseName}替换实际文件名)",
   "configuration.testbenchOutputFileName.description": "Testbench输出文件名(使用${baseName}替换实际文件名)",
-  "configuration.selectedInstanceTemplate.description": "已应用的例化模板(使用命令面板设置 留空为默认)",
-  "configuration.selectedTestbenchTemplate.description": "已应用的Testbench模板(使用命令面板设置 留空为默认)",
+  "configuration.selectedInstanceTemplate.description": "已应用的例化模板 (留空为默认) (Ctrl+Shift+P打开命令面板 > 创建模板 > 应用模板)",
+  "configuration.selectedTestbenchTemplate.description": "已应用的Testbench模板 (留空为默认) (Ctrl+Shift+P打开命令面板 > 创建模板 > 应用模板)",
   "submenu.generateInstanceToNewDocument": "生成例化",
   "submenu.generateTestbenchToNewDocument": "生成Testbench"
 }
