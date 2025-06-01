@@ -12,6 +12,12 @@
   "commands.generateTestbenchGeneral": "Verilog: 生成Testbench(默认)",
   "commands.editTestbenchTemplate": "Verilog: 编辑Testbench模板",
   "commands.editInstanceTemplate": "Verilog: 编辑例化模板",
+  "commands.deleteInstanceTemplate": "Verilog: 删除例化模板",
+  "commands.deleteTestbenchTemplate": "Verilog: 删除Testbench模板",
+  "commands.selectInstanceTemplate": "Verilog: 应用例化模板",
+  "commands.selectTestbenchTemplate": "Verilog: 应用Testbench模板",
+  "commands.createInstanceTemplate": "Verilog: 创建例化模板",
+  "commands.createTestbenchTemplate": "Verilog: 创建Testbench模板",
   "configuration.instanceOutputMode.description": "例化默认输出模式",
   "configuration.instanceOutputMode.newDocument": "输出到新文件",
   "configuration.instanceOutputMode.clipboard": "复制到剪贴板",
@@ -26,6 +32,8 @@
   "configuration.testbenchOutputPath.description": "Testbench文件的输出路径(相对于源文件)",
   "configuration.instanceOutputFileName.description": "例化输出文件名(使用${baseName}替换实际文件名)",
   "configuration.testbenchOutputFileName.description": "Testbench输出文件名(使用${baseName}替换实际文件名)",
+  "configuration.selectedInstanceTemplate.description": "已应用的例化模板(使用命令面板设置 留空为默认)",
+  "configuration.selectedTestbenchTemplate.description": "已应用的Testbench模板(使用命令面板设置 留空为默认)",
   "submenu.generateInstance": "生成例化",
   "submenu.generateTestbench": "生成Testbench"
 }

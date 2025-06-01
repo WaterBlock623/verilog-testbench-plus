@@ -12,6 +12,12 @@
   "commands.generateTestbenchGeneral": "Verilog: Generate Testbench (Default)",
   "commands.editTestbenchTemplate": "Verilog: Edit Testbench Template",
   "commands.editInstanceTemplate": "Verilog: Edit Instance Template",
+  "commands.deleteInstanceTemplate": "Verilog: Delete Instance Template",
+  "commands.deleteTestbenchTemplate": "Verilog: Delete Testbench Template",
+  "commands.selectInstanceTemplate": "Verilog: Select Instance Template",
+  "commands.selectTestbenchTemplate": "Verilog: Select Testbench Template",
+  "commands.createInstanceTemplate": "Verilog: Create Instance Template",
+  "commands.createTestbenchTemplate": "Verilog: Create Testbench Template",
   "configuration.instanceOutputMode.description": "Default output mode for Instance generation",
   "configuration.instanceOutputMode.newDocument": "Output to a new document",
   "configuration.instanceOutputMode.clipboard": "Copy to clipboard",
@@ -26,6 +32,8 @@
   "configuration.testbenchOutputPath.description": "Output path for Testbench files (relative to source file)",
   "configuration.instanceOutputFileName.description": "Output file name of the Instance (replace the actual file name with ${baseName} )",
   "configuration.testbenchOutputFileName.description": "Output file name of the Testbench (replace the actual file name with ${baseName} )",
+  "configuration.selectedInstanceTemplate.description": "Applied Instance template (Set via command palette, leave blank for default)",
+  "configuration.selectedTestbenchTemplate.description": "Applied Testbench template (Set via command palette, leave blank for default)",
   "submenu.generateInstance": "Generate Instance",
   "submenu.generateTestbench": "Generate Testbench"
 }

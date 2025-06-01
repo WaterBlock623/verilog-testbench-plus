@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import { TemplateManager } from './templateManager';
 
 /**
  * 输出模式枚举
@@ -50,7 +51,7 @@ export interface Port {
  */
 export interface GenerateOptions {
     context: vscode.ExtensionContext;
-    templateFile: string;
+    templateManager: TemplateManager;
     type: GenerationType;
     outputMode: OutputMode;
 }

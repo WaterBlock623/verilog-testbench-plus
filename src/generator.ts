@@ -36,12 +36,10 @@ export async function generateCode(options: GenerateOptions): Promise<void> {
             return;
         }
 
+        // 获取选中的模板路径
+        const templatePath = options.templateManager.getSelectedTemplatePath(options.type);
+        
         // 读取模板文件
-        const templatePath = path.join(
-            options.context.extensionPath,
-            'templates',
-            options.templateFile
-        );
         const template = fs.readFileSync(templatePath, 'utf8');
 
         // 替换模板中的占位符

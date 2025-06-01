@@ -3,7 +3,7 @@
   "displayName": "Verilog Testbench Plus",
   "description": "%description%",
   "publisher": "water-block",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "engines": {
     "vscode": "^1.75.0"
   },
@@ -72,12 +72,36 @@
         "title": "%commands.generateTestbenchGeneral%"
       },
       {
-        "command": "verilog-testbench-plus.editTestbenchTemplate",
-        "title": "%commands.editTestbenchTemplate%"
+        "command": "verilog-testbench-plus.createInstanceTemplate",
+        "title": "%commands.createInstanceTemplate%"
+      },
+      {
+        "command": "verilog-testbench-plus.createTestbenchTemplate",
+        "title": "%commands.createTestbenchTemplate%"
       },
       {
         "command": "verilog-testbench-plus.editInstanceTemplate",
         "title": "%commands.editInstanceTemplate%"
+      },
+      {
+        "command": "verilog-testbench-plus.editTestbenchTemplate",
+        "title": "%commands.editTestbenchTemplate%"
+      },
+      {
+        "command": "verilog-testbench-plus.deleteInstanceTemplate",
+        "title": "%commands.deleteInstanceTemplate%"
+      },
+      {
+        "command": "verilog-testbench-plus.deleteTestbenchTemplate",
+        "title": "%commands.deleteTestbenchTemplate%"
+      },
+      {
+        "command": "verilog-testbench-plus.selectInstanceTemplate",
+        "title": "%commands.selectInstanceTemplate%"
+      },
+      {
+        "command": "verilog-testbench-plus.selectTestbenchTemplate",
+        "title": "%commands.selectTestbenchTemplate%"
       }
     ],
     "submenus": [
@@ -187,6 +211,30 @@
         {
           "command": "verilog-testbench-plus.generateTestbenchGeneral",
           "when": "resourceExtname == .v"
+        },
+        {
+          "command": "verilog-testbench-plus.createInstanceTemplate"
+        },
+        {
+          "command": "verilog-testbench-plus.createTestbenchTemplate"
+        },
+        {
+          "command": "verilog-testbench-plus.editInstanceTemplate"
+        },
+        {
+          "command": "verilog-testbench-plus.editTestbenchTemplate"
+        },
+        {
+          "command": "verilog-testbench-plus.deleteInstanceTemplate"
+        },
+        {
+          "command": "verilog-testbench-plus.deleteTestbenchTemplate"
+        },
+        {
+          "command": "verilog-testbench-plus.selectInstanceTemplate"
+        },
+        {
+          "command": "verilog-testbench-plus.selectTestbenchTemplate"
         }
       ]
     },
@@ -246,6 +294,16 @@
           "type": "string",
           "default": "tb_${baseName}.v",
           "description": "%configuration.testbenchOutputFileName.description%"
+        },
+        "verilog-testbench-plus.selectedInstanceTemplate": {
+          "type": "string",
+          "default": null,
+          "description": "%configuration.selectedInstanceTemplate.description%"
+        },
+        "verilog-testbench-plus.selectedTestbenchTemplate": {
+          "type": "string",
+          "default": null,
+          "description": "%configuration.selectedTestbenchTemplate.description%"
         }
       }
     }
