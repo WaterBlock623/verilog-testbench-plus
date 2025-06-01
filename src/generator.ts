@@ -1,6 +1,5 @@
 import * as vscode from 'vscode';
 import * as fs from 'fs';
-import * as path from 'path';
 import { GenerateOptions } from './types';
 import { parseVerilogModule } from './parser';
 import { replaceTemplate } from './template';
@@ -30,7 +29,7 @@ export async function generateCode(options: GenerateOptions): Promise<void> {
         // 解析Verilog文件
         const content = document.getText();
         const moduleInfo = parseVerilogModule(content);
-        
+
         if (!moduleInfo) {
             vscode.window.showErrorMessage(l10n.t('Could not parse module information'));
             return;
@@ -38,7 +37,7 @@ export async function generateCode(options: GenerateOptions): Promise<void> {
 
         // 获取选中的模板路径
         const templatePath = options.templateManager.getSelectedTemplatePath(options.type);
-        
+
         // 读取模板文件
         const template = fs.readFileSync(templatePath, 'utf8');
 
@@ -47,7 +46,7 @@ export async function generateCode(options: GenerateOptions): Promise<void> {
 
         // 处理输出
         await handleOutput(output, options.outputMode, options.type, document.fileName);
-        
+
     } catch (error) {
         const errMsg = error instanceof Error ? error.message : String(error);
         vscode.window.showErrorMessage(

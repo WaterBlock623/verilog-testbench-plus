@@ -33,5 +33,8 @@
   "Save for the current workspace": "保存到当前工作区",
   "Folder Settings": "文件夹设置",
   "Save for the current folder": "保存到当前文件夹",
-  "Select where to save this setting": "选择保存此设置的位置"
+  "Select where to save this setting": "选择保存此设置的位置",
+  "Select template type": "选择模板类型",
+  "Manage Instance templates": "管理例化模板",
+  "Manage Testbench templates": "管理Testbench模板"
 }

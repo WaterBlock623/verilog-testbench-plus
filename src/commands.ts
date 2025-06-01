@@ -1,16 +1,98 @@
 import * as vscode from 'vscode';
-import * as path from 'path';
 import { OutputMode, GenerationType, GenerateOptions } from './types';
-import { generateCode, openFile } from './generator';
+import { generateCode } from './generator';
 import { TemplateManager } from './templateManager';
 
+const l10n = vscode.l10n;
+
 /**
- * 命令配置接口
+ * 命令配置
  */
 interface CommandConfig {
     id: string;
     handler: () => void | Promise<void>;
 }
+
+/**
+ * 生成类型配置
+ */
+interface GenerationTypeConfig {
+    type: GenerationType;
+    prefix: string;
+    configKey: string;
+}
+
+/**
+ * 输出模式配置
+ */
+interface OutputModeConfig {
+    mode: OutputMode;
+    suffix: string;
+}
+
+/**
+ * 模板操作配置
+ */
+interface TemplateActionConfig {
+    action: string;
+    handler: (templateManager: TemplateManager) => void | Promise<void>;
+}
+
+// 生成类型配置
+const GENERATION_TYPES: GenerationTypeConfig[] = [
+    {
+        type: GenerationType.Instance,
+        prefix: 'generateInstance',
+        configKey: 'instanceOutputMode'
+    },
+    {
+        type: GenerationType.Testbench,
+        prefix: 'generateTestbench',
+        configKey: 'testbenchOutputMode'
+    }
+];
+
+// 输出模式配置
+const OUTPUT_MODES: OutputModeConfig[] = [
+    { mode: OutputMode.NewDocument, suffix: 'ToNewDocument' },
+    { mode: OutputMode.Clipboard, suffix: 'ToClipboard' },
+    { mode: OutputMode.FileOverwrite, suffix: 'ToFileOverwrite' },
+    { mode: OutputMode.FileAppend, suffix: 'ToFileAppend' }
+];
+
+// 模板操作配置 - 修改为统一的操作，不区分类型
+const TEMPLATE_ACTIONS: TemplateActionConfig[] = [
+    {
+        action: 'createTemplate',
+        handler: async (tm) => {
+            const type = await tm.selectGenerationType();
+            if (type) await tm.createTemplate(type);
+        }
+    },
+    {
+        action: 'editTemplate',
+        handler: async (tm) => {
+            const type = await tm.selectGenerationType();
+            if (type) await tm.editTemplate(type);
+        }
+    },
+    {
+        action: 'deleteTemplate',
+        handler: async (tm) => {
+            const type = await tm.selectGenerationType();
+            if (type) await tm.deleteTemplate(type);
+        }
+    },
+    {
+        action: 'selectTemplate',
+        handler: async (tm) => {
+            const type = await tm.selectGenerationType();
+            if (type) await tm.selectTemplate(type);
+        }
+    }
+];
+
+
 
 /**
  * 创建生成代码的命令处理器
@@ -55,138 +137,85 @@ function createGeneralHandler(
 }
 
 /**
+ * 生成特定输出模式的命令
+ */
+function generateOutputCommands(
+    context: vscode.ExtensionContext,
+    templateManager: TemplateManager,
+    genConfig: GenerationTypeConfig,
+    outputConfig: OutputModeConfig
+): CommandConfig {
+    return {
+        id: `verilog-testbench-plus.${genConfig.prefix}${outputConfig.suffix}`,
+        handler: createGenerateHandler(
+            context,
+            templateManager,
+            genConfig.type,
+            outputConfig.mode
+        )
+    };
+}
+
+/**
+ * 生成通用命令
+ */
+function generateGeneralCommand(
+    context: vscode.ExtensionContext,
+    templateManager: TemplateManager,
+    genConfig: GenerationTypeConfig
+): CommandConfig {
+    return {
+        id: `verilog-testbench-plus.${genConfig.prefix}General`,
+        handler: createGeneralHandler(
+            context,
+            templateManager,
+            genConfig.type,
+            genConfig.configKey
+        )
+    };
+}
+
+/**
+ * 生成模板管理命令
+ */
+function generateTemplateCommand(
+    templateManager: TemplateManager,
+    actionConfig: TemplateActionConfig
+): CommandConfig {
+    return {
+        id: `verilog-testbench-plus.${actionConfig.action}`,
+        handler: () => actionConfig.handler(templateManager)
+    };
+}
+
+/**
  * 获取所有命令配置
  */
 export function getCommands(context: vscode.ExtensionContext): CommandConfig[] {
     const templateManager = new TemplateManager(context);
-    
-    return [
-        // Instance 相关命令
-        {
-            id: 'verilog-testbench-plus.generateInstance',
-            handler: createGenerateHandler(
-                context,
-                templateManager,
-                GenerationType.Instance,
-                OutputMode.NewDocument
-            )
-        },
-        {
-            id: 'verilog-testbench-plus.generateInstanceToClipboard',
-            handler: createGenerateHandler(
-                context,
-                templateManager,
-                GenerationType.Instance,
-                OutputMode.Clipboard
-            )
-        },
-        {
-            id: 'verilog-testbench-plus.generateInstanceToFileOverwrite',
-            handler: createGenerateHandler(
-                context,
-                templateManager,
-                GenerationType.Instance,
-                OutputMode.FileOverwrite
-            )
-        },
-        {
-            id: 'verilog-testbench-plus.generateInstanceToFileAppend',
-            handler: createGenerateHandler(
-                context,
-                templateManager,
-                GenerationType.Instance,
-                OutputMode.FileAppend
-            )
-        },
-        {
-            id: 'verilog-testbench-plus.generateInstanceGeneral',
-            handler: createGeneralHandler(
-                context,
-                templateManager,
-                GenerationType.Instance,
-                'instanceOutputMode'
-            )
-        },
+    const commands: CommandConfig[] = [];
 
-        // Testbench 相关命令
-        {
-            id: 'verilog-testbench-plus.generateTestbench',
-            handler: createGenerateHandler(
-                context,
-                templateManager,
-                GenerationType.Testbench,
-                OutputMode.NewDocument
-            )
-        },
-        {
-            id: 'verilog-testbench-plus.generateTestbenchToClipboard',
-            handler: createGenerateHandler(
-                context,
-                templateManager,
-                GenerationType.Testbench,
-                OutputMode.Clipboard
-            )
-        },
-        {
-            id: 'verilog-testbench-plus.generateTestbenchToFileOverwrite',
-            handler: createGenerateHandler(
-                context,
-                templateManager,
-                GenerationType.Testbench,
-                OutputMode.FileOverwrite
-            )
-        },
-        {
-            id: 'verilog-testbench-plus.generateTestbenchToFileAppend',
-            handler: createGenerateHandler(
-                context,
-                templateManager,
-                GenerationType.Testbench,
-                OutputMode.FileAppend
-            )
-        },
-        {
-            id: 'verilog-testbench-plus.generateTestbenchGeneral',
-            handler: createGeneralHandler(
-                context,
-                templateManager,
-                GenerationType.Testbench,
-                'testbenchOutputMode'
-            )
-        },
-
-        // 模板管理命令
-        {
-            id: 'verilog-testbench-plus.createInstanceTemplate',
-            handler: () => templateManager.createTemplate(GenerationType.Instance)
-        },
-        {
-            id: 'verilog-testbench-plus.createTestbenchTemplate',
-            handler: () => templateManager.createTemplate(GenerationType.Testbench)
-        },
-        {
-            id: 'verilog-testbench-plus.editInstanceTemplate',
-            handler: () => templateManager.editTemplate(GenerationType.Instance)
-        },
-        {
-            id: 'verilog-testbench-plus.editTestbenchTemplate',
-            handler: () => templateManager.editTemplate(GenerationType.Testbench)
-        },
-        {
-            id: 'verilog-testbench-plus.deleteInstanceTemplate',
-            handler: () => templateManager.deleteTemplate(GenerationType.Instance)
-        },
-        {
-            id: 'verilog-testbench-plus.deleteTestbenchTemplate',
-            handler: () => templateManager.deleteTemplate(GenerationType.Testbench)
-        },
-        {
-            id: 'verilog-testbench-plus.selectInstanceTemplate',
-            handler: () => templateManager.selectTemplate(GenerationType.Instance)
-        },
-        {
-            id: 'verilog-testbench-plus.selectTestbenchTemplate',
-            handler: () => templateManager.selectTemplate(GenerationType.Testbench)
+    // 生成所有代码生成命令
+    for (const genConfig of GENERATION_TYPES) {
+        // 为每种输出模式生成命令
+        for (const outputConfig of OUTPUT_MODES) {
+            commands.push(
+                generateOutputCommands(context, templateManager, genConfig, outputConfig)
+            );
         }
-    ];
+
+        // 生成通用命令
+        commands.push(
+            generateGeneralCommand(context, templateManager, genConfig)
+        );
+    }
+
+    // 生成模板管理命令 - 只生成4个统一的命令
+    for (const actionConfig of TEMPLATE_ACTIONS) {
+        commands.push(
+            generateTemplateCommand(templateManager, actionConfig)
+        );
+    }
+
+    return commands;
 }

@@ -198,6 +198,30 @@ export class TemplateManager {
     }
 
     /**
+     * 选择模板类型
+     */
+    public async selectGenerationType(): Promise<GenerationType | undefined> {
+        const items = [
+            {
+                label: l10n.t('Instance'),
+                description: l10n.t('Manage Instance templates'),
+                type: GenerationType.Instance
+            },
+            {
+                label: l10n.t('Testbench'),
+                description: l10n.t('Manage Testbench templates'),
+                type: GenerationType.Testbench
+            }
+        ];
+
+        const selected = await vscode.window.showQuickPick(items, {
+            placeHolder: l10n.t('Select template type')
+        });
+
+        return selected?.type;
+    }
+
+    /**
      * 选择模板
      */
     public async selectTemplate(type: GenerationType): Promise<void> {
