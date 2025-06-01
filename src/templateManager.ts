@@ -168,27 +168,34 @@ export class TemplateManager {
                 l10n.t('Template {0} deleted successfully', selected)
             );
 
-            // 如果删除的是当前选中的模板，重置为默认模板
+            // 修复：重置所有配置作用域中的模板引用
             const config = vscode.workspace.getConfiguration('verilog-testbench-plus');
             const configKey = type === GenerationType.Instance
                 ? 'selectedInstanceTemplate'
                 : 'selectedTestbenchTemplate';
-            const currentTemplate = config.get<string>(configKey);
 
-            if (currentTemplate === selected) {
-                // 获取当前配置的保存位置
-                const inspection = config.inspect<string>(configKey);
-                let target = vscode.ConfigurationTarget.Global;
+            const inspection = config.inspect<string>(configKey);
 
-                // 确定配置的原始保存位置
-                if (inspection?.workspaceFolderValue !== undefined) {
-                    target = vscode.ConfigurationTarget.WorkspaceFolder;
-                } else if (inspection?.workspaceValue !== undefined) {
-                    target = vscode.ConfigurationTarget.Workspace;
-                }
+            // 重置所有作用域中的配置
+            const resetPromises: Promise<void>[] = [];
 
-                await config.update(configKey, undefined, target);
+            // 重置全局作用域
+            if (inspection?.globalValue === selected) {
+                resetPromises.push(Promise.resolve(config.update(configKey, undefined, vscode.ConfigurationTarget.Global)));
             }
+
+            // 重置工作区作用域
+            if (inspection?.workspaceValue === selected) {
+                resetPromises.push(Promise.resolve(config.update(configKey, undefined, vscode.ConfigurationTarget.Workspace)));
+            }
+
+            // 重置工作区文件夹作用域
+            if (inspection?.workspaceFolderValue === selected) {
+                resetPromises.push(Promise.resolve(config.update(configKey, undefined, vscode.ConfigurationTarget.WorkspaceFolder)));
+            }
+
+            // 等待所有重置操作完成
+            await Promise.all(resetPromises);
         } catch (error) {
             const errMsg = error instanceof Error ? error.message : String(error);
             vscode.window.showErrorMessage(
