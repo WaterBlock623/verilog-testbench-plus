@@ -43,11 +43,11 @@ This extension was developed with reference to:
 ![](./images/settings_en.png)
 
 - Custom template file
-    - 1.Open Command Palette (Ctrl + Shift + P)
+    - 1.Right-click in the Verilog file or Open Command Palette (Ctrl + Shift + P)
     - 2.Create Template
     - 3.Select emplate
 
-![](./images/command_palette_template_en.png)
+![](./images/manege_templates_en.png)
 
 - Default configurations
 
@@ -117,22 +117,22 @@ endmodule
 
 ## Version History
 
-### 0.1.1
+### 0.1.3
+- Modify the prefix of command description
+- Add the right-click menu for management templates
 
+### 0.1.1
 - Remove unnecessary files
 
 ### 0.1.0
-
 - Add template operations (add, edit, delete, select)
 
 ### 0.0.2
-
 - Fix bugs
 - Add the function of customizing the output file name
 - Adjust the alignment format
 
 ### 0.0.1
-
 - Initial release
 
 ## Repository
@@ -186,11 +186,11 @@ endmodule
 ![](./images/settings_zh_cn.png)
 
 - 自定义模板文件
-    - 1.打开命令面板(Ctrl + Shift + P)
+    - 1.在Verilog文件中右键 或打开命令面板(Ctrl + Shift + P)
     - 2.创建模板
     - 3.应用模板
 
-![](./images/command_palette_template_zh_cn.png)
+![](./images/manege_templates_zh_cn.png)
 
 - 默认配置
 
@@ -260,22 +260,22 @@ endmodule
 
 ## 版本说明
 
-### 0.1.1
+### 0.1.3
+- 修改命令描述前缀
+- 新增管理模板的右键菜单
 
+### 0.1.1
 - 移除多余文件
 
 ### 0.1.0
-
 - 新增模板操作(添加,编辑,删除,应用)
 
 ### 0.0.2
-
 - 修复bug
 - 新增自定义输出文件名的功能
 - 调整对齐格式
 
 ### 0.0.1
-
 - 首次发布
 
 ## 存储库
