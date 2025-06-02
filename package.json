@@ -91,11 +91,15 @@
     "submenus": [
       {
         "id": "verilog-testbench-plus.instance-submenu",
-        "label": "%submenu.generateInstanceToNewDocument%"
+        "label": "%submenu.generateInstance%"
       },
       {
         "id": "verilog-testbench-plus.testbench-submenu",
-        "label": "%submenu.generateTestbenchToNewDocument%"
+        "label": "%submenu.generateTestbench%"
+      },
+      {
+        "id": "verilog-testbench-plus.template-submenu",
+        "label": "%submenu.manageTemplates%"
       }
     ],
     "menus": {
@@ -103,12 +107,17 @@
         {
           "when": "resourceExtname == .v",
           "submenu": "verilog-testbench-plus.instance-submenu",
-          "group": "verilog@1"
+          "group": "vtp@1"
         },
         {
           "when": "resourceExtname == .v",
           "submenu": "verilog-testbench-plus.testbench-submenu",
-          "group": "verilog@2"
+          "group": "vtp@2"
+        },
+        {
+          "when": "resourceExtname == .v",
+          "submenu": "verilog-testbench-plus.template-submenu",
+          "group": "vtp@3"
         }
       ],
       "verilog-testbench-plus.instance-submenu": [
@@ -153,6 +162,24 @@
         {
           "command": "verilog-testbench-plus.generateTestbenchToFileAppend",
           "group": "2_specific@4"
+        }
+      ],
+      "verilog-testbench-plus.template-submenu": [
+        {
+          "command": "verilog-testbench-plus.createTemplate",
+          "group": "1_action@1"
+        },
+        {
+          "command": "verilog-testbench-plus.editTemplate",
+          "group": "1_action@2"
+        },
+        {
+          "command": "verilog-testbench-plus.deleteTemplate",
+          "group": "1_action@3"
+        },
+        {
+          "command": "verilog-testbench-plus.selectTemplate",
+          "group": "1_action@4"
         }
       ],
       "commandPalette": [
@@ -217,7 +244,7 @@
           "verilog-testbench-plus.instanceOutputMode": {
             "type": "string",
             "order": 0,
-            "default": "newDocument",
+            "default": "clipboard",
             "enum": [
               "newDocument",
               "clipboard",

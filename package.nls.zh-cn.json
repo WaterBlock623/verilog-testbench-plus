@@ -30,6 +30,7 @@
   "configuration.testbenchOutputFileName.description": "Testbench输出文件名(使用${baseName}替换实际文件名)",
   "configuration.selectedInstanceTemplate.description": "已应用的例化模板 (留空为默认) (Ctrl+Shift+P打开命令面板 > 创建模板 > 应用模板)",
   "configuration.selectedTestbenchTemplate.description": "已应用的Testbench模板 (留空为默认) (Ctrl+Shift+P打开命令面板 > 创建模板 > 应用模板)",
-  "submenu.generateInstanceToNewDocument": "生成例化",
-  "submenu.generateTestbenchToNewDocument": "生成Testbench"
+  "submenu.generateInstance": "生成例化",
+  "submenu.generateTestbench": "生成Testbench",
+  "submenu.manageTemplates": "管理模板"
 }

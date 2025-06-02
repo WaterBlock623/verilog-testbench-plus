@@ -30,6 +30,7 @@
   "configuration.testbenchOutputFileName.description": "Output file name of the Testbench (replace the actual file name with ${baseName} )",
   "configuration.selectedInstanceTemplate.description": "Selected Instance template (leave blank for default) (Ctrl+Shift+P Open Command Palette > Create Template > Select Template)",
   "configuration.selectedTestbenchTemplate.description": "Selected Testbench template (leave blank for default) (Ctrl+Shift+P Open Command Palette > Create Template > Select Template)",
-  "submenu.generateInstanceToNewDocument": "Generate Instance",
-  "submenu.generateTestbenchToNewDocument": "Generate Testbench"
+  "submenu.generateInstance": "Generate Instance",
+  "submenu.generateTestbench": "Generate Testbench",
+  "submenu.manageTemplates": "Manage Templates"
 }
